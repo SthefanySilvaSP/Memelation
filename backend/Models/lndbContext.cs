@@ -17,12 +17,14 @@ namespace backend.Models
 
         public virtual DbSet<TbListaNegra> TbListaNegra { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=lndb", x => x.ServerVersion("8.0.20-mysql"));
+                //string conn = "server=localhost;user id=root;password=1234;database=lndb";
+                string conn = "server=sql10.freesqldatabase.com;user id=sql10359214;password=Rn4S91weAb;database=sql10359214";
+                optionsBuilder.UseMySql(conn, x => x.ServerVersion("8.0.20-mysql"));
             }
         }
 

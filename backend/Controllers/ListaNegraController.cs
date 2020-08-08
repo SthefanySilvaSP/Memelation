@@ -14,6 +14,7 @@ namespace backend.Controllers
         Business.ListaNegraBusiness business = new Business.ListaNegraBusiness();
         Utils.ListaNegraConversor conversor = new Utils.ListaNegraConversor();
 
+
         [HttpPost]
         public ActionResult<Models.Response.ListaNegraResposne> Inserir(Models.Request.ListaNegraRequest request)
         {
@@ -52,6 +53,15 @@ namespace backend.Controllers
                     new Models.Response.ErroResponse(500, ex.Message)
                 );
             }
+        }
+
+
+
+        
+        [HttpGet("ping")]
+        public string Ping() 
+        {
+            return "pong";
         }
     }
 }
