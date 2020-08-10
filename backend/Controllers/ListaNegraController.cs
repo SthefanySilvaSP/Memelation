@@ -16,14 +16,14 @@ namespace backend.Controllers
 
 
         [HttpPost]
-        public ActionResult<Models.Response.ListaNegraResposne> Inserir(Models.Request.ListaNegraRequest request)
+        public ActionResult<Models.Response.ListaNegraResponse> Inserir(Models.Request.ListaNegraRequest request)
         {
             try
             {
                 Models.TbListaNegra ln = conversor.ParaTabela(request);
                 business.Salvar(ln);
 
-                Models.Response.ListaNegraResposne resp = conversor.ParaResponse(ln);
+                Models.Response.ListaNegraResponse resp = conversor.ParaResponse(ln);
                 return resp;
             }
             catch (System.Exception ex)
@@ -36,7 +36,7 @@ namespace backend.Controllers
 
 
         [HttpGet]
-        public ActionResult<List<Models.Response.ListaNegraResposne>> Listar() 
+        public ActionResult<List<Models.Response.ListaNegraResponse>> Listar() 
         {
             try
             {
@@ -44,7 +44,7 @@ namespace backend.Controllers
                 if (lns.Count == 0)
                     return NotFound();
 
-                List<Models.Response.ListaNegraResposne> resp = conversor.ParaResponse(lns);
+                List<Models.Response.ListaNegraResponse> resp = conversor.ParaResponse(lns);
                 return resp;
             }
             catch (Exception ex)

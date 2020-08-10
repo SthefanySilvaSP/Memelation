@@ -2,7 +2,7 @@ using System;
 
 namespace backend.Models.Response
 {
-    public class ListaNegraResposne
+    public class ListaNegraResponse
     {
         public int Id { get; set; }
         public string Nome { get; set; }

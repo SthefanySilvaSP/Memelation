@@ -16,9 +16,9 @@ namespace backend.Utils
             return ln;
         }
 
-        public Models.Response.ListaNegraResposne ParaResponse(Models.TbListaNegra ln)
+        public Models.Response.ListaNegraResponse ParaResponse(Models.TbListaNegra ln)
         {
-            Models.Response.ListaNegraResposne resp =new Models.Response.ListaNegraResposne();
+            Models.Response.ListaNegraResponse resp =new Models.Response.ListaNegraResponse();
             resp.Id = ln.IdListaNegra;
             resp.Nome = ln.NmPessoa;
             resp.Motivo = ln.DsMotivo;
@@ -26,9 +26,9 @@ namespace backend.Utils
             return resp;
         }
 
-        public List<Models.Response.ListaNegraResposne> ParaResponse(List<Models.TbListaNegra> lns)
+        public List<Models.Response.ListaNegraResponse> ParaResponse(List<Models.TbListaNegra> lns)
         {
-            List<Models.Response.ListaNegraResposne> resp = new List<Models.Response.ListaNegraResposne>();
+            List<Models.Response.ListaNegraResponse> resp = new List<Models.Response.ListaNegraResponse>();
             foreach (Models.TbListaNegra item in lns)
             {
                 resp.Add(
