@@ -6,32 +6,38 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import ListaNegraApi from "../../services/listaNegraApi";
+import { useHistory } from 'react-router-dom';
 const api = new ListaNegraApi();
 
 
-export default function Cadastrar() {
-    const [nome, setNome] = useState('')
-    const [motivo, setMotivo] = useState('')
-    const [inclusao, setInclusao] = useState('')
-    const [local, setLocal] = useState('')
+export default function Alterar(props) {
+    const navegacao = useHistory();
+    
+    const [id, setId] = useState(props.location.state.id)
+    const [nome, setNome] = useState(props.location.state.nome)
+    const [motivo, setMotivo] = useState(props.location.state.motivo)
+    const [inclusao, setInclusao] = useState(props.location.state.inclusao.substr(0, 10))
+    const [local, setLocal] = useState(props.location.state.local)
 
-    const salvarClick = async () => {
+    const alterarClick = async () => {
         const request = {
             nome,
             motivo,
             local,
             inclusao
         };
-
+        
         console.log(request)
-        const resp = await api.cadastrar(request);
+        const resp = await api.alterar(id, request);
 
-        toast.dark('🚀 Cadastrado na lista negra');
+        toast.dark('🚀 Alterado na lista negra');
+
+        navegacao.goBack();
     }
     
     return (
         <div>
-            <h1>Cadastrar na Lista Negra</h1>
+            <h1>Alterar na Lista Negra</h1>
 
             <div>
                 <label>Nome:</label>
@@ -72,7 +78,7 @@ export default function Cadastrar() {
             </div>
 
             <div>
-                <button onClick={salvarClick}> Cadastrar </button>
+                <button onClick={alterarClick}> Alterar </button>
             </div>
 
             <ToastContainer />

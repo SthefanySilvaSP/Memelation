@@ -1,9 +1,10 @@
 
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import LoadingBar from 'react-top-loading-bar';
 
 import ListaNegraApi from '../../services/listaNegraApi'
+import { Link } from 'react-router-dom';
 const api = new ListaNegraApi();
 
 
@@ -20,6 +21,18 @@ export default function Consultar() {
 
         loadingBar.current.complete();
     }
+
+
+    const deletarClick = async (id) => {
+        const deletado = await api.deletar(id)
+        await consultarClick();
+    }
+
+
+    useEffect(() => {
+        consultarClick();
+    }, [])
+
 
     return (
         <div>
@@ -42,7 +55,10 @@ export default function Consultar() {
                             <th>ID</th>
                             <th>Nome</th>
                             <th>Motivo</th>
+                            <th>Local</th>
                             <th>Inclusão</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -52,7 +68,22 @@ export default function Consultar() {
                                 <th>#{item.id}</th>
                                 <td>{item.nome}</td>
                                 <td>{item.motivo}</td>
+                                <td>{item.local}</td>
                                 <td> {new Date(item.inclusao + 'Z').toLocaleString() }</td>
+                                <td>
+                                    <button onClick={() => deletarClick(item.id)}>
+                                        Deletar
+                                    </button>
+                                </td>
+                                <td>
+                                    <Link to={{
+                                        pathname: "/alterar",
+                                        state: item
+                                    }}
+                                     >
+                                         Alterar
+                                    </Link>
+                                </td>
                             </tr>    
                         )}
                     </tbody>

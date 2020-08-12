@@ -15,6 +15,8 @@ namespace backend.Business
                 throw new Exception("Nome é obrigatório");
             if (ln.DsMotivo == string.Empty)
                 throw new Exception("Motivo é obrigatório");
+            if (ln.DsLocal == string.Empty)
+                throw new Exception("Local é obrigatório");
 
             return db.Salvar(ln);
         }
@@ -22,6 +24,24 @@ namespace backend.Business
         public List<Models.TbListaNegra> Listar()
         {
             return db.Listar();
+        }
+
+        public Models.TbListaNegra Deletar(int id)
+        {
+            return db.Deletar(id);
+        }
+
+        public Models.TbListaNegra Alterar(int id, Models.TbListaNegra novo)
+        {
+            if (novo.NmPessoa == string.Empty)
+                throw new Exception("Nome é obrigatório");
+            if (novo.DsMotivo == string.Empty)
+                throw new Exception("Motivo é obrigatório");
+            if (novo.DsLocal == string.Empty)
+                throw new Exception("Local é obrigatório");
+
+
+            return db.Alterar(id, novo);
         }
     }
 }

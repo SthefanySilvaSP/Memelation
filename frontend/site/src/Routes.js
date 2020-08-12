@@ -7,6 +7,7 @@ import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import App from './pages/App'
 import Cadastrar from './pages/Cadastrar'
 import Consultar from './pages/Consultar'
+import Alterar from './pages/Alterar'
 
 
 export default function Routes() {
@@ -18,6 +19,7 @@ export default function Routes() {
                 <Route path="/" exact={true} component={App} />
                 <Route path="/cadastrar"  component={Cadastrar} />
                 <Route path="/consultar"  component={Consultar} />
+                <Route path="/alterar"  component={Alterar} />
             </Switch>
         </BrowserRouter>
     )

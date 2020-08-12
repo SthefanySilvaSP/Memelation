@@ -35,13 +35,18 @@ namespace backend.Models
                 entity.HasKey(e => e.IdListaNegra)
                     .HasName("PRIMARY");
 
+                entity.Property(e => e.DsLocal)
+                    .HasDefaultValueSql("'Outro'")
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
+
                 entity.Property(e => e.DsMotivo)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
 
                 entity.Property(e => e.NmPessoa)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
             });
 
             OnModelCreatingPartial(modelBuilder);
