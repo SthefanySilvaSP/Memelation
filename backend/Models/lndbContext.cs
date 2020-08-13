@@ -15,6 +15,7 @@ namespace backend.Models
         {
         }
 
+        public virtual DbSet<TbListaFofa> TbListaFofa { get; set; }
         public virtual DbSet<TbListaNegra> TbListaNegra { get; set; }
 
 
@@ -30,6 +31,20 @@ namespace backend.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TbListaFofa>(entity =>
+            {
+                entity.HasKey(e => e.IdListaFofa)
+                    .HasName("PRIMARY");
+
+                entity.Property(e => e.DsPorque)
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
+
+                entity.Property(e => e.NmFofura)
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
+            });
+
             modelBuilder.Entity<TbListaNegra>(entity =>
             {
                 entity.HasKey(e => e.IdListaNegra)
