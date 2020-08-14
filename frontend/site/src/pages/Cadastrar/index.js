@@ -14,13 +14,15 @@ export default function Cadastrar() {
     const [motivo, setMotivo] = useState('')
     const [inclusao, setInclusao] = useState('')
     const [local, setLocal] = useState('')
+    const [foto, setFoto] = useState();
 
     const salvarClick = async () => {
         const request = {
             nome,
             motivo,
             local,
-            inclusao
+            inclusao,
+            foto
         };
 
         console.log(request)
@@ -64,12 +66,21 @@ export default function Cadastrar() {
             </div>
 
             <div>
+                <label>Foto:</label>
+                <input type="file" 
+                   onChange={e => setFoto(e.target.files[0])}
+                  />
+            </div>
+
+            <div>
                 <label>Inclusão:</label>
                 <input type="date" 
                    value={inclusao}
                    onChange={e => setInclusao(e.target.value)}
                   />
             </div>
+
+            
 
             <div>
                 <button onClick={salvarClick}> Cadastrar </button>

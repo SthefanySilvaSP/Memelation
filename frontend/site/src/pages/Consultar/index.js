@@ -53,6 +53,7 @@ export default function Consultar() {
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th></th>
                             <th>Nome</th>
                             <th>Motivo</th>
                             <th>Local</th>
@@ -66,6 +67,9 @@ export default function Consultar() {
                         {registros.map(item => 
                             <tr key={item.id}>
                                 <th>#{item.id}</th>
+                                <td>
+                                   <img src={api.buscarImagem(item.foto)} alt="" height="32" />
+                                </td>
                                 <td>{item.nome}</td>
                                 <td>{item.motivo}</td>
                                 <td>{item.local}</td>

@@ -10,7 +10,18 @@ export default class ListaNegraApi {
 
 
     async cadastrar(ln) {
-        const resp = await api.post('/listanegra', ln);
+        console.log(ln);
+
+        let formData = new FormData();
+        formData.append('nome', ln.nome);
+        formData.append('motivo', ln.motivo);
+        formData.append('local', ln.local);
+        formData.append('inclusao', ln.inclusao);
+        formData.append('foto', ln.foto);
+
+        const resp = await api.post('/listanegra', formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+        });
         console.log(resp);
         return resp;
     }
@@ -19,6 +30,13 @@ export default class ListaNegraApi {
         const resp = await api.get('/listanegra');
         
         return resp.data;
+    }
+
+    buscarImagem(foto) {
+        const urlFoto = api.defaults.baseURL + '/listanegra/foto/' + foto;
+        console.log(urlFoto);
+
+        return urlFoto;
     }
 
 

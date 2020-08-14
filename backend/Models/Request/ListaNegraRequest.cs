@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace backend.Models.Request
 {
@@ -8,5 +9,6 @@ namespace backend.Models.Request
         public string Motivo { get; set; }
         public string Local { get; set; }
         public DateTime Inclusao { get; set; }
+        public IFormFile Foto { get; set; }
     }
 }

@@ -13,15 +13,18 @@ namespace backend.Controllers
     {
         Business.ListaNegraBusiness business = new Business.ListaNegraBusiness();
         Utils.ListaNegraConversor conversor = new Utils.ListaNegraConversor();
-
+        Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
 
         [HttpPost]
-        public ActionResult<Models.Response.ListaNegraResponse> Inserir(Models.Request.ListaNegraRequest request)
+        public ActionResult<Models.Response.ListaNegraResponse> Inserir([FromForm] Models.Request.ListaNegraRequest request)
         {
             try
             {
                 Models.TbListaNegra ln = conversor.ParaTabela(request);
+                ln.DsFoto = gerenciadorFoto.GerarNovoNome(request.Foto.FileName);
+
                 business.Salvar(ln);
+                gerenciadorFoto.SalvarFoto(ln.DsFoto, request.Foto);
 
                 Models.Response.ListaNegraResponse resp = conversor.ParaResponse(ln);
                 return resp;
@@ -33,6 +36,25 @@ namespace backend.Controllers
                 );
             }
         }
+
+
+        [HttpGet("foto/{nome}")]
+        public ActionResult BuscarFoto(string nome)
+        {
+            try 
+            {
+                byte[] foto = gerenciadorFoto.LerFoto(nome);
+                string contentType = gerenciadorFoto.GerarContentType(nome);
+                return File(foto, contentType);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.ErroResponse(404, ex.Message)
+                );
+            }
+        }
+
 
         [HttpDelete("{id}")]
         public ActionResult<Models.Response.ListaNegraResponse> Deletar(int id)

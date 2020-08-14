@@ -50,6 +50,11 @@ namespace backend.Models
                 entity.HasKey(e => e.IdListaNegra)
                     .HasName("PRIMARY");
 
+                entity.Property(e => e.DsFoto)
+                    .HasDefaultValueSql("'user.png'")
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
+
                 entity.Property(e => e.DsLocal)
                     .HasDefaultValueSql("'Outro'")
                     .HasCharSet("latin1")

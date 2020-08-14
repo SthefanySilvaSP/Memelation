@@ -25,6 +25,7 @@ namespace backend.Utils
             resp.Motivo = ln.DsMotivo;
             resp.Inclusao = ln.DtInclusao;
             resp.Local = ln.DsLocal;
+            resp.Foto = ln.DsFoto;
             return resp;
         }
 
