@@ -1,5 +1,6 @@
-create database lndb;
-use lndb;
+create mydb;
+use mydb;
+
 
 create table tb_lista_negra (
 	id_lista_negra		int primary key auto_increment,
@@ -7,6 +8,17 @@ create table tb_lista_negra (
     ds_motivo			varchar(200),
     dt_inclusao			datetime
 );
+
+alter table tb_lista_negra 
+	    add ds_local varchar(100);
+
+alter table tb_lista_negra 
+	    add ds_foto varchar(100) default 'user.png';
+
+
+select * from tb_lista_negra;
+
+-- ##################################################################################
 
 create table tb_lista_fofa (
 	id_lista_fofa			int primary key auto_increment,
@@ -16,15 +28,26 @@ create table tb_lista_fofa (
     dt_niver				date not null
 );
 
+insert into tb_lista_fofa (nm_fofura, ds_porque, bt_colocaria_potinho, dt_niver)
+					values ('Bruno', 'Muito lindo lindo', true, '1989-10-22');
 
-
-insert into tb_lista_negra (nm_pessoa, ds_motivo, dt_inclusao)
-					values ('Jennifer Aniston', 'Me abandonou quando fiquei famoso', '2020-01-01');
-                    
-alter table tb_lista_negra 
-        add ds_local varchar(100) default 'Outro';
-        
-        
-select * from tb_lista_negra;
 select * from tb_lista_fofa;
-                    
+
+
+-- ##################################################################################
+
+
+create table tb_memelation (
+	id_memelation			int primary key auto_increment,
+    nm_autor				varchar(100) not null,
+    ds_categoria			varchar(50)  not null,
+    ds_hashtags				varchar(200) not null,
+    bt_maior				bool 		 not null,
+    img_meme				varchar(100) not null,
+    dt_inclusao				datetime     not null
+);
+
+
+
+
+

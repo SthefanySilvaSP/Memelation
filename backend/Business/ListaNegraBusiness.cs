@@ -11,11 +11,11 @@ namespace backend.Business
 
         public Models.TbListaNegra Salvar(Models.TbListaNegra ln)
         {
-            if (ln.NmPessoa == string.Empty)
+            if (string.IsNullOrEmpty(ln.NmPessoa))
                 throw new Exception("Nome é obrigatório");
-            if (ln.DsMotivo == string.Empty)
+            if (string.IsNullOrEmpty(ln.DsMotivo))
                 throw new Exception("Motivo é obrigatório");
-            if (ln.DsLocal == string.Empty)
+            if (string.IsNullOrEmpty(ln.DsLocal))
                 throw new Exception("Local é obrigatório");
 
             return db.Salvar(ln);

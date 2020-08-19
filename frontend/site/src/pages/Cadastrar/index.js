@@ -17,18 +17,22 @@ export default function Cadastrar() {
     const [foto, setFoto] = useState();
 
     const salvarClick = async () => {
-        const request = {
-            nome,
-            motivo,
-            local,
-            inclusao,
-            foto
-        };
-
-        console.log(request)
-        const resp = await api.cadastrar(request);
-
-        toast.dark('🚀 Cadastrado na lista negra');
+        try {
+            const request = {
+                nome,
+                motivo,
+                local,
+                inclusao,
+                foto
+            };
+            const resp = await api.cadastrar(request);
+            toast.dark('🚀 Cadastrado na lista negra');
+        } catch (e) {
+            if (e.response.data.erro)
+                toast.error(e.response.data.erro);
+            else 
+                toast.error('Ocorreu um erro. Tente novamente.');
+        }
     }
     
     return (
