@@ -6,7 +6,7 @@ namespace backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MemeController : ControllerBase
+    public class MemelationController : ControllerBase
     {
         Business.MemeBusiness business = new Business.MemeBusiness();
         Utils.MemeConversor conversor = new Utils.MemeConversor();
@@ -50,6 +50,7 @@ namespace backend.Controllers
                     new Models.Response.ErroResponse(404, ex.Message)
                 );
             }
+
         }
 
         [HttpGet]
