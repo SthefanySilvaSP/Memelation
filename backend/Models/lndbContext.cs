@@ -17,6 +17,7 @@ namespace backend.Models
 
         public virtual DbSet<TbListaFofa> TbListaFofa { get; set; }
         public virtual DbSet<TbListaNegra> TbListaNegra { get; set; }
+        public virtual DbSet<TbMemelation> TbMemelation { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -24,7 +25,7 @@ namespace backend.Models
             if (!optionsBuilder.IsConfigured)
             {
                 //string conn = "server=localhost;user id=root;password=1234;database=lndb";
-                string conn = "server=sql10.freesqldatabase.com;user id=sql10359214;password=Rn4S91weAb;database=sql10359214";
+                string conn = "server=localhost;user id=root;password=1234;database=meme";
                 optionsBuilder.UseMySql(conn, x => x.ServerVersion("8.0.20-mysql"));
             }
         }
@@ -67,6 +68,29 @@ namespace backend.Models
                 entity.Property(e => e.NmPessoa)
                     .HasCharSet("latin1")
                     .HasCollation("latin1_swedish_ci");
+            });
+
+            modelBuilder.Entity<TbMemelation>(entity =>
+            {
+                entity.HasKey(e => e.IdMemelation)
+                    .HasName("PRIMARY");
+
+                entity.Property(e => e.DsCategoria)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.DsHashtags)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.ImgMeme)
+                    .HasDefaultValueSql("'user.png'")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.NmAutor)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
             });
 
             OnModelCreatingPartial(modelBuilder);
