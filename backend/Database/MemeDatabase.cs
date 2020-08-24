@@ -48,7 +48,8 @@ namespace backend.Database
                 tb.DsHashtags = novaTb.DsHashtags;
                 tb.BtMaior = novaTb.BtMaior;
                 tb.DtInclusao = novaTb.DtInclusao;
-
+                tb.ImgMeme=novaTb.ImgMeme;
+                
                 db.SaveChanges();
             }
 
