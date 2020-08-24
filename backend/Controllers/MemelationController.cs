@@ -79,8 +79,11 @@ namespace backend.Controllers
             try 
             {
                 Models.TbMemelation tb = conversor.ParaTabela(req);
-                Models.TbMemelation novaTb = business.Alterar(id, tb);
+                tb.ImgMeme = gerenciadorFoto.GerarNovoNome(req.Imagem.FileName);
 
+                Models.TbMemelation novaTb = business.Alterar(id, tb);
+                gerenciadorFoto.SalvarFoto(tb.ImgMeme, req.Imagem);
+                
                 return conversor.ParaResponse(novaTb);
             }
             catch (Exception ex)
