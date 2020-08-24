@@ -82,7 +82,7 @@ namespace backend.Controllers
                 tb.ImgMeme = gerenciadorFoto.GerarNovoNome(req.Imagem.FileName);
 
                 Models.TbMemelation novaTb = business.Alterar(id, tb);
-                gerenciadorFoto.SalvarFoto(tb.ImgMeme, req.Imagem);
+                gerenciadorFoto.SalvarFoto(novaTb.ImgMeme, req.Imagem);
                 
                 return conversor.ParaResponse(novaTb);
             }
