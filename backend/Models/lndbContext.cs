@@ -24,9 +24,11 @@ namespace backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //string conn = "server=localhost;user id=root;password=1234;database=lndb";
-                string conn = "server=localhost;user id=root;password=1234;database=meme";
-                optionsBuilder.UseMySql(conn, x => x.ServerVersion("8.0.20-mysql"));
+                string conn = "server=localhost;user id=root;password=1234;database=lndb";
+                optionsBuilder.UseMySql(conn, x => {
+                    x.ServerVersion("8.0.20-mysql");
+                    //x.EnableRetryOnFailure();
+                });
             }
         }
 

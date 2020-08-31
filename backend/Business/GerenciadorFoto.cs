@@ -35,7 +35,7 @@ namespace backend.Business
         public string GerarContentType(string nome)
         {
             string extensao = System.IO.Path.GetExtension(nome).Replace(".", "");
-            string contentType = "application/" + extensao;
+            string contentType = "image/" + extensao;
             return contentType;
         }
 
