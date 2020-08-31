@@ -55,6 +55,14 @@ namespace backend.Database
 
             return tb;
         }
+
+        Models.Response.MemesPorCategoriaResponse MemesPorCategoria()
+        {
+            List<Models.TbMemelation> MemesDB = db.TbMemelation.ToList();
+            List<Models.Response.MemesPorCategoriaResponse> memesCategoria = new List<Models.Response.MemesPorCategoriaResponse>();
+
+            return null;
+        }
         
     }
 }
